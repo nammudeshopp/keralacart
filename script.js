@@ -66,6 +66,30 @@ thumbs.forEach(thumb => {
     });
 });
 
+// Contact form — submits to Google Forms via a hidden iframe so the
+// visitor never leaves the site; shows an inline confirmation instead.
+const contactForm = document.getElementById('contactForm');
+const formNote = document.getElementById('formNote');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', (event) => {
+        // Basic honeypot check: bots tend to fill every field, humans won't see this one.
+        const honeypot = contactForm.querySelector('.hp-field');
+        if (honeypot && honeypot.value) {
+            event.preventDefault();
+            return;
+        }
+
+        setTimeout(() => {
+            contactForm.reset();
+            if (formNote) {
+                formNote.textContent = "Thanks! Your message has been sent — we'll get back to you soon.";
+                formNote.classList.add('form-success');
+            }
+        }, 800);
+    });
+}
+
 // Reviews show/hide toggle
 const reviewsToggle = document.querySelector('.reviews-toggle');
 const reviewsGrid = document.querySelector('.reviews-grid');

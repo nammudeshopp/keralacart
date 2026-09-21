@@ -685,6 +685,11 @@ a {
     margin-top: -8px;
 }
 
+.form-note.form-success {
+    color: var(--primary);
+    font-weight: 600;
+}
+
 .hp-field {
     position: absolute;
     left: -9999px;
